@@ -67,3 +67,61 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.card-component-container {
+  border: 1px solid white;
+  min-height: 370px;
+  border-radius: 20px 20px 0 0;
+}
+
+.card-component-container .title {
+  width: 100%;
+  background: white;
+  color: black;
+  text-align: center;
+  padding: 15px 80px;
+  border-radius: 20px 20px 0 0;
+  font-weight: 700;
+  font-size: 20;
+  box-sizing: border-box;
+}
+
+.card-component-container .content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.card-component-container .content .image {
+  height: 200px;
+  margin: 20px auto;
+}
+
+.card-component-container .content .gender,
+.card-component-container .content .status {
+  font-weight: 700;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a {
+  color: white;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.main-page {
+  width: 100vw;
+  margin-top: 5%;
+}
+
+.main-page .card-board {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
