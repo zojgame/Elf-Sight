@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getCharactersByPage } from "../../api"
-import { PaginationComponent, CardBoardComponent } from "../../component"
+import { PaginationComponent, CardBoardComponent, FiltersComponent } from "../../component"
 import { useParams } from 'react-router-dom'
 import { useStore } from "../../store"
 
@@ -13,16 +13,19 @@ const MainPage = () => {
 
     useEffect(() => {
         setCurrentPage(page ?? '0')
-        getCharactersByPage(currentPage).then(data => {
-        setPageCount(data.data.info.pages)
-        setCharacters(data.data.results)
+        getCharactersByPage(currentPage)
+        .then(data => {
+            setPageCount(data.data.info.pages)
+            setCharacters(data.data.results)
     })
+
   }, [currentPage, page, setCharacters, setCurrentPage]);
 
    return (
     <>
     {characters.length > 0 && 
       <div className="main-page">
+        <FiltersComponent />
         <div className="card-board">
             <CardBoardComponent characters={characters} />
         </div>
