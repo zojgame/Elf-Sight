@@ -135,6 +135,7 @@ button:focus-visible {
 }
 
 .card-board {
+  width: 98vw;
   display: flex;
   gap: 20px;
   justify-content: center;

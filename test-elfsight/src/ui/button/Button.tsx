@@ -1,8 +1,4 @@
-
-interface IButton {
-    handleClick : () => void,
-    title: string
-}
+import { IButton } from "./types";
 
 const Button = ({handleClick, title} : IButton) => {
    return (
