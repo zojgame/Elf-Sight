@@ -1,3 +1,4 @@
 export { CardComponent } from "./card/Card";
 export { PaginationComponent } from "./pagination/Pagination";
-export { CardBoardComponent } from "./cardBoard/cardBoard";
+export { CardBoardComponent } from "./cardBoard/CardBoard";
+export { FiltersComponent } from "./filters/Filters";

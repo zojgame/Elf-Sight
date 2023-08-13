@@ -1,19 +1,24 @@
-import { CharacterType } from "../../types";
-
-interface CardComponentProps {
-    character: CharacterType
-}
+import { CardComponentProps } from "./types";
+import { Card, CardModal } from "../../ui";
+import { useState } from "react";
 
 const CardComponent = ({character} : CardComponentProps) => {
+    const [isModal, setIsModal] = useState(false)
+    const handleCardClick = () => {
+        setIsModal(true)
+    }
+
+    const handleModalClose = () => {
+        setIsModal(false)
+        console.log('clicke')
+    } 
+
    return (
-    <div className='card-component-container'>
-        <div className="title">{character.name}</div>
-        <div className="content">
-            <img src={`${character.image}`} className="image"/>
-            <div className="status">Статус: {character.status}</div>
-            <div className="gender">Гендер: {character.gender}</div>
-        </div>            
-   </div>
+    <>
+        <Card handleClick={handleCardClick} character={character}/>
+        {isModal && <CardModal handleOnModalClose={handleModalClose} character={character}/>}
+    </>
    );
 };
+
 export {CardComponent} ;
