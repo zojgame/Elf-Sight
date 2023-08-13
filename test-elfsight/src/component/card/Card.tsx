@@ -1,7 +1,7 @@
-import { Character } from "../../api";
+import { CharacterType } from "../../types";
 
 interface CardComponentProps {
-    character: Character
+    character: CharacterType
 }
 
 const CardComponent = ({character} : CardComponentProps) => {

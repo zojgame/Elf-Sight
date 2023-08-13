@@ -7,4 +7,11 @@ const getCharacters = async () => {
     return response
 }
 
-export {getCharacters}
+const getCharactersByPage = async (page : string) => {
+    const url = `${ULR_CHARACTERS}/?page=${page}`
+    const response = await axios.get<GetCharactersResponse>(url)
+
+    return response
+}
+
+export {getCharacters, getCharactersByPage}

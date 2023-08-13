@@ -70,7 +70,8 @@ button:focus-visible {
 
 .card-component-container {
   border: 1px solid white;
-  min-height: 370px;
+  height: 430px;
+  width: 270px;
   border-radius: 20px 20px 0 0;
 }
 
@@ -114,12 +115,20 @@ button:focus-visible {
   text-decoration: none;
 }
 
+.pagination a.active-page {
+  background: white;
+  color: black;
+}
+.pagination .page {
+  cursor: pointer;
+}
+
 .main-page {
-  width: 100vw;
+  width: 100%;
   margin-top: 5%;
 }
 
-.main-page .card-board {
+.card-board {
   display: flex;
   gap: 20px;
   justify-content: center;
