@@ -2,6 +2,9 @@ import { useRef, useState } from "react";
 import { DropDownInput, TextInput, Button } from "../../ui";
 import { getCharactersWithFilter } from "../../api";
 import { useStore } from "../../store";
+import { ToastList } from "..";
+import { ToastType } from "../../types";
+import {nanoid} from 'nanoid';
 
 const FiltersComponent = () => {
     const [gender, setGender] = useState<string | null>(null)
@@ -13,6 +16,27 @@ const FiltersComponent = () => {
     const genderOption = ['Male', 'Female', 'Genderless', 'unknown']
     const statusOption = ['Dead', 'Alive', 'unknown']
     const {setCharacters} = useStore();
+
+    const [toasts, setToasts] = useState<ToastType[]>([]);
+
+    const showToast = (message : string) => {
+        const toast : ToastType= {
+          id: nanoid(),
+          message,
+          type: 'failure',
+        };    
+      
+        setToasts((prevToasts) => [...prevToasts, toast]); 
+        
+        
+        setTimeout(() => {
+            removeToast(toast.id);
+        }, 3 * 1000);
+    }
+
+    const removeToast = (id: string) => {
+        setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+    };
 
     const handleOnGenderClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
         const gender = (event.target as HTMLAnchorElement).innerHTML;
@@ -30,7 +54,7 @@ const FiltersComponent = () => {
             setCharacters(data.data.results)
         })
         .catch(() => {
-            console.error('не найдено')
+            showToast('Не найдено!')
         })
     }
 
@@ -41,18 +65,23 @@ const FiltersComponent = () => {
     }
 
    return (
-    <form className="filter-container" ref={form} onSubmit={(e) => e.preventDefault()}>
-        <div>Фильтровать по</div>
-        <TextInput reference={nameRef} title={"Имя"} />
-        <TextInput reference={speciesRef} title={"Вид"} />
-        <TextInput reference={typeRef} title={"Тип"} />
-        
-        <DropDownInput title={gender === null ? 'Пол' : gender} handleOnClick={handleOnGenderClick} filterOptions={genderOption} />
-        <DropDownInput title={status === null ? 'Статус' : status} handleOnClick={handleOnStatusClick} filterOptions={statusOption} />
+    <>
+        <form className="filter-container" ref={form} onSubmit={(e) => e.preventDefault()}>
+            <div>Фильтровать по</div>
+            <TextInput reference={nameRef} title={"Имя"} />
+            <TextInput reference={speciesRef} title={"Вид"} />
+            <TextInput reference={typeRef} title={"Тип"} />
+            
+            <DropDownInput title={gender === null ? 'Пол' : gender} handleOnClick={handleOnGenderClick} filterOptions={genderOption} />
+            <DropDownInput title={status === null ? 'Статус' : status} handleOnClick={handleOnStatusClick} filterOptions={statusOption} />
 
-        <Button handleClick={handleSubmitFilter} title="Применить фильтр"/>
-        <Button handleClick={handleResetFilter} title="Сбросить фильтр"/>
-    </form>
+            <Button handleClick={handleSubmitFilter} title="Применить фильтр"/>
+            <Button handleClick={handleResetFilter} title="Сбросить фильтр"/>
+        </form>
+
+        <ToastList removeToast={removeToast} data={toasts} />    
+    </>
    );
 };
-export {FiltersComponent} ;
+
+export {FiltersComponent}

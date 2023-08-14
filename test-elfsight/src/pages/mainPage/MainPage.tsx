@@ -7,8 +7,7 @@ import { useStore } from "../../store"
 const MainPage = () => {
     const { page } = useParams()
 
-    const [pageCount, setPageCount] = useState(0)
-    
+    const [pageCount, setPageCount] = useState(0)    
     const {characters, setCharacters, currentPage, setCurrentPage} = useStore()
 
     useEffect(() => {

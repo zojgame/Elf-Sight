@@ -1,1 +1,1 @@
-export type { StoreType, GetCharactersResponseType, CharacterType } from "./types";
+export type { StoreType, GetCharactersResponseType, CharacterType, ToastType } from "./types";

@@ -32,4 +32,10 @@ type GetCharactersResponseType = {
     results: CharacterType[]
 }
 
-export type { StoreType, GetCharactersResponseType, CharacterType }
+type ToastType = {
+    id: string,
+    message: string,
+    type: string
+}
+
+export type { StoreType, GetCharactersResponseType, CharacterType, ToastType }
