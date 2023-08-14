@@ -1,1 +1,0 @@
-export type { StoreType, GetCharactersResponseType, CharacterType, ToastType } from "./types";
