@@ -10,7 +10,6 @@ const CardComponent = ({character} : CardComponentProps) => {
 
     const handleModalClose = () => {
         setIsModal(false)
-        console.log('clicke')
     } 
 
    return (
